@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Workout App</string>
+
+    <string name="workout_category_full_body">Full body</string>
+    <string name="workout_category_cardio">Cardio</string>
+    <string name="workout_category_cross_fit">Cross Fit</string>
+    <string name="workout_category_cyclist">Cyclist</string>
+    <string name="workout_category_glutes">Glutes</string>
+    <string name="workout_category_power">Power</string>
+
+    <string name="content_desc_person">Person</string>
+    <string name="content_desc_menu">Menu</string>
+    <string name="content_desc_tune">Settings</string>
+    <string name="content_desc_radio_button">Progress</string>
+
+    <string name="home_loose_belly_fat_title">Loose\nbelly fat</string>
+    <string name="home_level_middle">Middle level</string>
+    <string name="content_desc_workout_image">Workout illustration</string>
+    <string name="content_desc_timer">Timer icon</string>
+    <string name="home_duration_5_minutes">5 minutes</string>
+    <string name="home_start_button">Start</string>
+    <string name="content_desc_start_arrow">Start arrow</string>
+
+    <string name="home_progress_great">Great!</string>
+    <string name="home_progress_calorie_info">You\'ve lost 70% of your \ndaily calorie intake
+    </string>
+
+    <!-- <string name="app_name">WorkoutApp</string> -->
+</resources>
