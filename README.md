@@ -1,6 +1,6 @@
 # Workout App
 
-Großer Credit an dieses Tutorial!
+Großer Credit an dieses Tutorial! https://www.youtube.com/watch?v=Bs_0ByUgAR0&list=LL&index=10
 
 Unsere Workout App stellt ein Workout zur Verfügung. Im Home Screen kann man durch den Start Button in der Workout Box das Workout starten.
 Hierbei ist zu beachten, dass man zu jeder Zeit wieder ins Menü kann durch den rechten Button im unteren Bottom Menü.
