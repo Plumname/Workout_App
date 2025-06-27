@@ -41,35 +41,35 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11" // Match your Compose version
+        kotlinCompilerExtensionVersion = "1.5.11" // Compose Compiler Version passend zur Compose Version
     }
 }
 
 dependencies {
-    // ✅ Core & Lifecycle
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation("androidx.activity:activity-compose:1.8.2")
 
-
-        implementation("androidx.compose.material3:material3:1.2.1")
-
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
-
     implementation(platform("androidx.compose:compose-bom:2024.04.00"))
-    implementation("androidx.compose.material:material") // Only Material 2
-
-    // ✅ Compose UI toolkit
+    implementation("androidx.compose.material:material") // Material 2
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation(libs.material3)
 
-    // ✅ Optional debug tools
+    // Navigation Compose (die richtige Dependency ohne jvmstubs!)
+    implementation("androidx.navigation:navigation-compose:2.7.2")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.2")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.0")
+
+    // Debug Tools
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    // ✅ Testing
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -29,25 +29,25 @@ fun CustomTopAppBar() {
     TopAppBar(
         title = {
             Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+                verticalAlignment = Alignment.CenterVertically, // Elemente vertikal zentrieren.
+                modifier = Modifier.fillMaxWidth() // die ganze Breite ausnutzen.
             ) {
                 Box(
                     modifier = Modifier
                         .size(50.dp)
-                        .clip(CircleShape),
-                    contentAlignment = Alignment.Center
+                        .clip(CircleShape), // runde Ecken.
+                    contentAlignment = Alignment.Center // Inhalt in der Box zentrieren.
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.outline_person_24),
+                        painter = painterResource(id = R.drawable.outline_person_24), // Icon für Profilbild laden.
                         contentDescription = "Profile picture",
-                        contentScale = ContentScale.Fit
+                        contentScale = ContentScale.Fit // Bild proportional an die Box anpassen.
                     )
                 }
 
                 Text(
                     buildAnnotatedString {
-                        append("Hello, ")
+                        append("Hello, ") // Standard-Text
                         withStyle(
                             style = SpanStyle(
                                 color = colorResource(id = R.color.black),
@@ -55,23 +55,24 @@ fun CustomTopAppBar() {
                                 fontSize = 20.sp
                             )
                         ) {
-                            append("User")
+                            append("User") // Benutzername fetten Stil geben
                         }
                     },
                     modifier = Modifier.padding(start = 10.dp)
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
+                // nimmt den verbleibenden Platz ein und schiebt das folgende Element nach rechts
 
-                BadgedBox(
+                BadgedBox( // Die Notifs Box. Sie macht nichts aber war im Tutorial und sieht gut aus. Zum Implmentieren gab es keine Zeit mehr.
                     badge = {
                         Badge(
-                            containerColor = Color.Red
+                            containerColor = Color.Red // rote Hintergrundfarbe für Badge (Benachrichtigungspunkt).
                         )
                     }
                 ) {
                     Icon(
-                        imageVector = Icons.Filled.Notifications,
+                        imageVector = Icons.Filled.Notifications, // Benachrichtigungs-Icon.
                         contentDescription = "Notification",
                         tint = Color.Black
                     )
@@ -79,7 +80,8 @@ fun CustomTopAppBar() {
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.White
+            containerColor = Color.White // Hintergrundfarbe der AppBar weiß setzen.
         )
     )
 }
+

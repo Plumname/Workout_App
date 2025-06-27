@@ -2,20 +2,16 @@ package com.example.workoutapp.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.RadioButtonChecked
 import androidx.compose.material.icons.filled.Schedule
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,23 +25,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.workoutapp.R
 import com.example.workoutapp.components.CustomTopAppBar
 
-@Composable
-fun HomeBody() {
-    val workOutCategories = listOf(
-        R.string.workout_category_full_body,
-        R.string.workout_category_cardio,
-        R.string.workout_category_cross_fit,
-        R.string.workout_category_cyclist,
-        R.string.workout_category_glutes,
-        R.string.workout_category_power
-    )
 
+@Composable
+fun HomeBody(navController: NavController) {
     Scaffold(
-        topBar = { CustomTopAppBar() },
-        bottomBar = {
+        topBar = { CustomTopAppBar() }, // custom TopAppBar anzeigen.
+        bottomBar = { // untere Menü bar.
             BottomNavigation(
                 modifier = Modifier.clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)),
                 elevation = 5.dp,
@@ -53,162 +42,125 @@ fun HomeBody() {
             ) {
                 BottomNavigationItem(
                     selected = true,
-                    onClick = {},
-                    icon = {
-                        Icon(
-                            Icons.Filled.Person,
-                            contentDescription = stringResource(R.string.content_desc_person),
-                            modifier = Modifier.size(30.dp)
-                        )
-                    },
-                    selectedContentColor = MaterialTheme.colors.primary,
-                    unselectedContentColor = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium)
+                    onClick = {}, // hier sollte man auf eine Art Profil kommen aber es gab keine Zeit mehr das zu implementieren.
+                    icon = { Icon(Icons.Filled.Person, contentDescription = null, modifier = Modifier.size(30.dp)) }
                 )
                 BottomNavigationItem(
                     selected = false,
-                    onClick = {},
-                    icon = {
-                        Icon(
-                            Icons.Filled.Menu,
-                            contentDescription = stringResource(R.string.content_desc_menu),
-                            modifier = Modifier.size(30.dp)
-                        )
-                    },
-                    selectedContentColor = MaterialTheme.colors.primary,
-                    unselectedContentColor = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium)
-                )
-                BottomNavigationItem(
-                    selected = false,
-                    onClick = {},
-                    icon = {
-                        Icon(
-                            Icons.Filled.Tune,
-                            contentDescription = stringResource(R.string.content_desc_tune),
-                            modifier = Modifier.size(30.dp)
-                        )
-                    },
-                    selectedContentColor = MaterialTheme.colors.primary,
-                    unselectedContentColor = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium)
-                )
-                BottomNavigationItem(
-                    selected = false,
-                    onClick = {},
-                    icon = {
-                        Icon(
-                            Icons.Filled.RadioButtonChecked,
-                            contentDescription = stringResource(R.string.content_desc_radio_button),
-                            modifier = Modifier.size(30.dp)
-                        )
-                    },
-                    selectedContentColor = MaterialTheme.colors.primary,
-                    unselectedContentColor = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium)
+                    onClick = {}, // Dieser Button wird erst wichtig wenn wir im workout screen sind. Siehe das Composable dafür.
+                    icon = { Icon(Icons.Filled.Menu, contentDescription = null, modifier = Modifier.size(30.dp)) }
                 )
             }
         }
-    ) { paddingValues ->
+    ) { paddingValues ->  // lambda (no-name) Funktion, die dafür sorgt dass das padding ausgeführt wird und geordnet ist.
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(horizontal = 18.dp)
         ) {
-            Spacer(modifier = Modifier.height(15.dp))
             Spacer(modifier = Modifier.height(30.dp))
 
-            // Workout Goal Card
+            // Workout-Card mit Start-Button
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(10.dp))
+                    .fillMaxWidth() // Box füllt die gesamte Breite
+                    .clip(RoundedCornerShape(10.dp)) // Ecken der Box abgerundet mit 10dp Radius
                     .background(colorResource(id = R.color.light_purple))
             ) {
-                Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 22.dp)) {
+                Column(
+                    modifier = Modifier.padding(
+                        horizontal = 20.dp,
+                        vertical = 22.dp
+                    )
+                ) { // Innenabstand rundherum
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(), // Zeile füllt Breite aus
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = stringResource(R.string.home_loose_belly_fat_title),
+                            text = stringResource(R.string.home_lose_belly_fat_title), // Titeltext aus den Ressourcen (Tutorial)
                             color = MaterialTheme.colors.onSurface,
                             fontWeight = FontWeight.Bold,
                             fontSize = 30.sp,
                             lineHeight = 32.sp
                         )
-                        Button(
+                        Button( //Schwierigkeitsgrad Button
                             shape = RoundedCornerShape(20.dp),
-                            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
-                            onClick = {},
+                            contentPadding = PaddingValues(
+                                horizontal = 12.dp,
+                                vertical = 6.dp
+                            ),
+                            onClick = {}, //Man sollte auswählen können wie schwer das Workout ist, ist aber nicht implementiert.
                             colors = ButtonDefaults.buttonColors(
-                                backgroundColor = colorResource(id = R.color.purple_200)
+                                backgroundColor = colorResource(id = R.color.purple_200) // lila Hintergrundfarbe
                             )
                         ) {
-                            Text(stringResource(R.string.home_level_middle), color = Color.White, fontSize = 18.sp)
+                            Text(
+                                stringResource(R.string.home_level_middle),
+                                color = Color.White,
+                                fontSize = 18.sp
+                            )
+
                         }
                     }
 
                     Spacer(modifier = Modifier.height(15.dp))
 
-                    Box(
+                    Image(
+                        painter = painterResource(id = R.drawable.woman),
+                        contentDescription = stringResource(R.string.content_desc_workout_image),
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clip(RoundedCornerShape(30.dp))
-                            .background(MaterialTheme.colors.surface),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.woman),
-                            contentDescription = stringResource(R.string.content_desc_workout_image),
-                            modifier = Modifier.fillMaxWidth(),
-                            contentScale = ContentScale.Fit
-                        )
-                    }
+                            .clip(RoundedCornerShape(10.dp))
+                            .border(
+                                width = 2.dp,
+                                color = Color.Black,
+                                shape = RoundedCornerShape(10.dp)
+                            ), // schwarzer Rahmen mit 2dp
+                        contentScale = ContentScale.Fit // Bild proportional skalieren und zentrieren.
+                    )
 
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    Row(
+                    Row( // Dauer und Start Button
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
                             Icons.Filled.Schedule,
-                            contentDescription = stringResource(R.string.content_desc_timer),
-                            tint = MaterialTheme.colors.onSurface
-                        )
+                            contentDescription = null
+                        ) // Uhr-Icon ohne Beschreibung
                         Text(
                             stringResource(R.string.home_duration_5_minutes),
-                            fontSize = 18.sp,
-                            color = MaterialTheme.colors.onSurface,
+                            fontSize = 18.sp, // Schriftgröße 18sp
                             modifier = Modifier.padding(start = 5.dp)
                         )
-                        Spacer(modifier = Modifier.weight(1f))
-                        TextButton(onClick = {}) {
+                        Spacer(modifier = Modifier.weight(1f)) // nimmt verbleibenden Platz ein und schiebt Button nach rechts.
+                        TextButton(onClick = { navController.navigate("workout") }) { // Startet das Workout.
                             Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(5.dp)
+                                verticalAlignment = Alignment.CenterVertically, // Elemente vertikal zentrieren.
+                                horizontalArrangement = Arrangement.spacedBy(5.dp) // Abstand zwischen Text und Icon.
                             ) {
                                 Text(
                                     stringResource(R.string.home_start_button),
                                     fontSize = 20.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = MaterialTheme.colors.onSurface
+                                    fontWeight = FontWeight.Bold
                                 )
                                 Icon(
                                     Icons.AutoMirrored.Filled.ArrowForward,
-                                    contentDescription = stringResource(R.string.content_desc_start_arrow),
-                                    tint = MaterialTheme.colors.onSurface
+                                    contentDescription = null
                                 )
                             }
                         }
                     }
                 }
             }
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            // Progress Card
+            //Kalorien Defizit Anzeige (Leere UI aus den Tutorial).
             Box(
                 modifier = Modifier
+                    .padding(top = 20.dp)
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(20.dp))
                     .background(colorResource(id = R.color.orange))
@@ -218,40 +170,40 @@ fun HomeBody() {
                         .fillMaxWidth()
                         .padding(20.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween // Elemente mit Abstand
                 ) {
                     Box(contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(
-                            progress = 0.56f,
-                            modifier = Modifier.size(75.dp),
-                            color = Color.Black,
-                            strokeWidth = 8.dp
+                        CircularProgressIndicator( //zeigt einen runden Fortschrittsbalken an. Hier wird der Fortschritt explizit mit progress
+                            progress = 0.56f, // Fortschritt 56%
+                            modifier = Modifier.size(75.dp), // Größe 75x75dp
+                            color = Color.Black, // schwarze Farbe
+                            strokeWidth = 8.dp // Strichbreite 8dp
                         )
                         Text(
-                            "56%",
-                            color = Color.Black,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 25.sp
+                            "56%", // Text über dem Kreis
+                            color = Color.Black, // schwarz
+                            fontWeight = FontWeight.Bold, // fett
+                            fontSize = 25.sp // Schriftgröße 25sp
                         )
                     }
-                    Column(modifier = Modifier.padding(start = 16.dp)) {
+                    Column(modifier = Modifier.padding(start = 16.dp)) { // Spalte mit Abstand links
                         Text(
-                            stringResource(R.string.home_progress_great),
-                            color = Color.Black,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 20.sp
+                            stringResource(R.string.home_progress_great), // Text "Fortschritt großartig"
+                            color = Color.Black, // schwarz
+                            fontWeight = FontWeight.Bold, // fett
+                            fontSize = 20.sp // Größe 20sp
                         )
                         Text(
-                            stringResource(R.string.home_progress_calorie_info),
-                            color = Color.Gray,
-                            fontSize = 16.sp,
-                            lineHeight = 18.sp
+                            stringResource(R.string.home_progress_calorie_info), // Kalorieninfo Text
+                            color = Color.Gray, // grau
+                            fontSize = 16.sp, // Schriftgröße 16sp
+                            lineHeight = 18.sp // Zeilenhöhe 18sp
                         )
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp)) // Abstand 16dp nach unten
         }
     }
 }
